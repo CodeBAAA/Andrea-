@@ -1,0 +1,382 @@
+/* Importa una fuente de Google Fonts para un diseño más atractivo */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    /* Nuevas variables de color de la paleta */
+    --persian-green: #1A968A;
+    --tiffany-blue: #6AD0C6;
+    --brown-sugar: #C67155;
+    --chestnut: #9E4528;
+    --suki-brown: #6A230B;
+
+    /* Mapeo de las variables existentes a la nueva paleta */
+    --primary-color: var(--persian-green); /* Usaremos Persian Green como color principal */
+    --secondary-color: var(--suki-brown); /* Usaremos Suki Brown para texto secundario o contraste oscuro */
+    --accent-color: var(--brown-sugar); /* Usaremos Brown Sugar para acentos y botones */
+    --light-bg: #f8f9fa; /* Mantener un fondo claro neutro si no hay color específico de la paleta */
+    --dark-bg: var(--suki-brown); /* Fondo oscuro para el header y footer será Suki Brown */
+    --text-color: #333; /* Color de texto general, puedes cambiarlo si lo deseas */
+    --white: #fff;
+    --border-radius: 8px;
+    --transition: all 0.3s ease-in-out;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-bg);
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color); /* Usando el nuevo primary-color */
+}
+
+a:hover {
+    color: var(--dark-bg); /* Usando el nuevo dark-bg */
+}
+
+/* Header y Navegación */
+header {
+    background: var(--dark-bg); /* Usando el nuevo dark-bg */
+    color: var(--white);
+    padding: 1rem 2rem; /* padding horizontal */
+    display: flex;
+    flex-direction: column; /* Apila el contenido del header y la navegación */
+    align-items: center; /* Centra horizontalmente todo el contenido del header */
+    text-align: center; /* Centra el texto por defecto */
+}
+
+.header-content { /* Contenedor para el logo y el título principal del header */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    display: flex;
+    flex-direction: column; /* Apila el banner y el título del sitio */
+    align-items: center; /* Centra horizontalmente el logo y el título del sitio */
+    margin-bottom: 1rem; /* Espacio entre el contenido del header y la navegación */
+}
+
+.logo-and-site-title { /* Contenedor para el logo y el H1 "Viajes Soñados" */
+    display: flex;
+    align-items: center; /* Alinea verticalmente el logo y el texto del título */
+    margin-bottom: 1rem; /* Espacio entre el logo/título y el slogan del banner */
+}
+
+.logo {
+    width: 50px; /* Tamaño ajustado para el logo */
+    height: 50px; /* Asegura que sea cuadrado */
+    border-radius: 50%; /* Lo hace redondo */
+    margin-right: 0.75rem; /* Espacio entre el logo y el título */
+    object-fit: cover; /* Ajusta la imagen dentro del círculo */
+    border: 2px solid var(--accent-color); /* Borde bonito alrededor del logo, usando accent-color */
+    box-shadow: 0 0 8px rgba(198, 113, 85, 0.5); /* Sombra para que destaque, usando el valor RGB del accent-color */
+}
+
+header h1 { /* Título principal de la página */
+    font-size: 2.2rem; /* Ajusta el tamaño de la fuente para el H1 principal */
+    margin: 0; /* Elimina márgenes por defecto para mejor control con flex */
+    font-weight: 700;
+    line-height: 1.2; /* Ajusta si el texto es muy largo */
+}
+
+.banner-placeholder {
+    /* Aquí podrías colocar una imagen de fondo para el banner si la tienes */
+    /* background: url('../imagenes/tu-imagen-de-banner.jpg') no-repeat center center/cover; */
+    height: 180px; /* Altura más pequeña para el banner */
+    background-color: var(--tiffany-blue); /* Usando Tiffany Blue para el banner */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    width: 100%; /* Para que ocupe todo el ancho del header-content */
+    border-radius: var(--border-radius); /* Un poco de redondeo al banner */
+}
+
+/* El slogan del banner */
+.banner-placeholder p {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%; /* Asegura que la navegación ocupe todo el ancho */
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: var(--white);
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    transition: var(--transition);
+    border-radius: var(--border-radius);
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    background-color: var(--primary-color); /* Usando el nuevo primary-color */
+    color: var(--white);
+}
+
+/* Contenido Principal */
+main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section {
+    background-color: var(--white);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+section h2 {
+    color: var(--primary-color); /* Usando el nuevo primary-color */
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+/* Carruseles */
+.carousel-section {
+    overflow: hidden; /* Asegura que no haya scrollbar horizontal no deseado */
+}
+
+.carousel {
+    display: flex;
+    flex-wrap: nowrap; /* Evita que los ítems salten a la siguiente línea */
+    overflow-x: auto; /* Permite scroll horizontal */
+    scroll-snap-type: x mandatory; /* Para un scroll más suave y con puntos de anclaje */
+    -webkit-overflow-scrolling: touch; /* Mejora el scroll en iOS */
+    padding-bottom: 1rem; /* Espacio para la barra de scroll */
+}
+
+.carousel::-webkit-scrollbar {
+    height: 8px;
+}
+
+.carousel::-webkit-scrollbar-track {
+    background: var(--light-bg);
+    border-radius: var(--border-radius);
+}
+
+.carousel::-webkit-scrollbar-thumb {
+    background: var(--primary-color); /* Usando el nuevo primary-color */
+    border-radius: var(--border-radius);
+}
+
+.carousel-item {
+    flex: 0 0 auto; /* No crece, no encoge, toma su tamaño de contenido */
+    width: 280px; /* Ancho de cada ítem del carrusel */
+    margin-right: 1.5rem;
+    text-align: center;
+    background-color: var(--light-bg);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    scroll-snap-align: start; /* Ancla el inicio del ítem al scroll */
+    transition: transform 0.3s ease;
+}
+
+.carousel-item:hover {
+    transform: translateY(-5px);
+}
+
+.carousel-item img {
+    max-width: 100%;
+    height: 180px; /* Altura fija para las imágenes del carrusel */
+    object-fit: cover; /* Ajusta la imagen sin distorsionarla */
+    border-radius: var(--border-radius);
+    margin-bottom: 0.75rem;
+}
+
+.carousel-item h3 {
+    color: var(--secondary-color); /* Usando el nuevo secondary-color */
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+}
+
+.carousel-item p {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.carousel-item .btn {
+    display: inline-block;
+    background-color: var(--accent-color); /* Usando el nuevo accent-color */
+    color: var(--white);
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    transition: var(--transition);
+}
+
+.carousel-item .btn:hover {
+    /* Aquí se necesitaría una función de oscurecimiento si no usas un preprocesador como Sass/Less. */
+    /* Por simplicidad, por ahora pondré un color un poco más oscuro manualmente o simplemente el secondary-color */
+    background-color: var(--chestnut); /* Usando Chestnut para el hover del botón */
+}
+
+/* Estilo para las secciones de información */
+.info-section {
+    text-align: left; /* Alinea el texto a la izquierda en las secciones de información */
+}
+
+.info-section h3 {
+    color: var(--secondary-color); /* Usando el nuevo secondary-color */
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.8rem;
+    text-align: center; /* Centra los subtítulos dentro de las secciones de info */
+}
+
+.info-section ul {
+    list-style: disc; /* Vuelve a poner viñetas de disco para las listas */
+    padding-left: 1.5rem; /* Añade sangría a las listas */
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.info-section ul li {
+    margin-bottom: 0.5rem;
+    background-color: transparent;
+    border-left: none;
+    border-radius: 0;
+}
+
+/* Estilos para la sección de Contacto con iconos */
+#contacto .contact-info p {
+    display: flex; /* Alinea el icono y el texto en la misma línea */
+    align-items: center; /* Centra verticalmente */
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+}
+
+#contacto .contact-info i {
+    margin-right: 10px; /* Espacio entre el icono y el texto */
+    color: var(--primary-color); /* Usando el nuevo primary-color */
+    font-size: 1.3rem;
+}
+
+.social-icons {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.social-icons a {
+    display: inline-block;
+    color: var(--primary-color); /* Usando el nuevo primary-color */
+    font-size: 2.5rem; /* Tamaño de los iconos de redes sociales */
+    margin: 0 15px;
+    transition: color 0.3s ease-in-out;
+}
+
+.social-icons a:hover {
+    color: var(--accent-color); /* Usando el nuevo accent-color */
+}
+
+
+/* Footer */
+footer {
+    background: var(--dark-bg); /* Usando el nuevo dark-bg */
+    color: var(--white);
+    text-align: center;
+    padding: 1.5rem 0;
+    font-size: 0.9rem;
+    margin-top: 2rem;
+}
+
+/* Responsividad básica */
+@media (max-width: 768px) {
+    /* Ajustes para el header en pantallas pequeñas */
+    header {
+        padding: 1rem;
+    }
+    .logo-and-site-title {
+        flex-direction: column; /* Apila el logo y el título en pantallas pequeñas */
+        margin-bottom: 0.5rem;
+    }
+    .logo {
+        width: 45px; /* Ajuste del logo para móviles */
+        height: 45px;
+        margin-right: 0; /* Elimina el margen lateral si están apilados */
+        margin-bottom: 0.5rem; /* Añade margen inferior */
+    }
+    header h1 {
+        font-size: 2rem;
+    }
+    .banner-placeholder {
+        height: 150px; /* Ajusta la altura del banner */
+    }
+    .banner-placeholder p {
+        font-size: 1rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin: 0.5rem 0;
+    }
+
+    main {
+        padding: 1rem;
+    }
+
+    section {
+        padding: 1.5rem;
+    }
+
+    .carousel-item {
+        width: 250px; /* Ajusta el ancho de los ítems en pantallas más pequeñas */
+        margin-right: 1rem;
+    }
+
+    .info-section h3 {
+        font-size: 1.5rem;
+    }
+
+    .social-icons a {
+        font-size: 2rem;
+        margin: 0 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        width: 40px; /* Ajuste del logo para móviles muy pequeños */
+        height: 40px;
+    }
+    header h1 {
+        font-size: 1.6rem;
+    }
+    .banner-placeholder {
+        height: 120px;
+    }
+    .banner-placeholder p {
+        font-size: 0.8rem;
+    }
+    section h2 {
+        font-size: 1.8rem;
+    }
+}
