@@ -33,10 +33,11 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--light-bg);
+    background-image: url('../imagenes/image_e0888e.png'); /* Ruta relativa a la imagen */
+    background-size: cover; /* Asegura que la imagen cubra todo el fondo */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll */
+    background-position: center center; /* Centra la imagen en el fondo */
 }
 
 a {
