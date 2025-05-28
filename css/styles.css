@@ -14,11 +14,16 @@
     --secondary-color: var(--suki-brown); /* Usaremos Suki Brown para texto secundario o contraste oscuro */
     --accent-color: var(--brown-sugar); /* Usaremos Brown Sugar para acentos y botones */
     --light-bg: #f8f9fa; /* Mantener un fondo claro neutro si no hay color específico de la paleta */
-    --dark-bg: var(--suki-brown); /* Fondo oscuro para el header y footer será Suki Brown */
+    --dark-bg: var(--suki-brown); /* Fondo oscuro para el footer será Suki Brown */
     --text-color: #333; /* Color de texto general, puedes cambiarlo si lo deseas */
     --white: #fff;
     --border-radius: 8px;
     --transition: all 0.3s ease-in-out;
+
+    /* Nuevas variables necesarias para el formulario (si no las tenías) */
+    --silver-chalice: #ACACAC; /* Un gris claro para bordes por defecto */
+    --dark-slate-gray: #2F4F4F; /* Un gris oscuro para etiquetas de formulario */
+    --pale-spring-bud: #E1ECCC; /* Un color muy claro para el borde del formulario */
 }
 
 * {
@@ -43,65 +48,107 @@ a:hover {
     color: var(--dark-bg);
 }
 
-/* Header y Navegación */
+/* Header */
 header {
-    background: var(--dark-bg);
-    color: var(--white);
+    background: var(--white); /* Fondo blanco para el header */
     padding: 1rem 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    position: relative; /* Necesario para posicionar el logo */
+    z-index: 20; /* Asegura que el header esté por encima de todo */
+    height: 100px; /* Altura fija para el header con el logo */
+    display: flex; /* Para controlar el posicionamiento del logo */
+    align-items: center; /* Alinea verticalmente el logo */
 }
 
-.header-content {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.logo-and-site-title {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
+.logo-container {
+    position: absolute; /* Posicionamiento absoluto para el logo */
+    top: 10px; /* Ajusta la distancia desde la parte superior */
+    left: 20px; /* Ajusta la distancia desde la izquierda */
+    z-index: 21; /* Asegura que el logo esté por encima del header */
 }
 
 .logo {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 0.75rem;
-    object-fit: cover;
-    border: 2px solid var(--accent-color);
-    box-shadow: 0 0 8px rgba(198, 113, 85, 0.5); /* Usando el valor RGB del accent-color */
+    width: 100px; /* Ajusta el tamaño del logo según la imagen */
+    height: auto; /* Mantiene la proporción */
+    object-fit: contain;
 }
 
-header h1 { /* Título principal de la página (KBA's TOURS) */
-    font-size: 2.2rem;
-    margin: 0;
-    font-weight: 700;
-    line-height: 1.2;
-}
-
-.banner-placeholder {
-    /* background: url('../imagenes/tu-imagen-de-banner.jpg') no-repeat center center/cover; */
-    height: 180px;
-    background-color: var(--tiffany-blue);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: var(--white);
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+/* --- Estilos para el Banner Principal (Hero) --- */
+.hero-banner {
     width: 100%;
-    border-radius: var(--border-radius);
+    height: 60vh; /* Ajusta la altura según tus preferencias */
+    background-image: url('../imagenes/image_ee4690.jpg'); /* Ruta a tu imagen */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column; /* Cambia a columna para alinear contenido y nav */
+    justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center; /* Centra el contenido horizontalmente */
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 50px; /* Espacio para que el nav no se superponga al contenido */
 }
 
-.banner-placeholder p {
-    font-size: 1.2rem;
-    font-weight: 300;
+/* Overlay para oscurecer la imagen */
+.hero-banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Capa oscura (40% de opacidad) */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    max-width: 800px;
+    margin-bottom: 20px; /* Espacio entre el contenido del hero y la nav */
+}
+
+.hero-content h2 {
+    font-size: 3em;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    color: var(--white);
+}
+
+.hero-content p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    color: var(--white);
+}
+
+.btn-hero {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    font-weight: bold;
+}
+
+.btn-hero:hover {
+    background-color: var(--chestnut);
+}
+
+/* --- Estilos para la Navegación (Nav) dentro del Banner --- */
+nav {
+    position: relative; /* Se mantiene dentro del flujo del hero-banner */
+    z-index: 2; /* Asegura que la nav esté por encima del overlay del banner */
+    width: 100%; /* Ocupa todo el ancho del banner */
+    padding: 1rem 2rem;
+    /* NO background-color aquí, solo en los elementos del menú */
+    background-color: transparent; /* Fondo transparente por defecto */
+    margin-top: auto; /* Empuja el nav hacia abajo dentro del flex container (hero-banner) */
 }
 
 nav ul {
@@ -114,21 +161,25 @@ nav ul {
 }
 
 nav ul li {
-    margin: 0 1rem;
+    margin: 0 0.5rem; /* Ajusta el margen entre los ítems */
 }
 
 nav ul li a {
-    color: var(--white);
+    color: var(--text-color); /* Color de texto inicial oscuro para que se vea en fondo blanco */
     font-weight: 600;
     padding: 0.5rem 1rem;
     transition: var(--transition);
     border-radius: var(--border-radius);
+    background-color: var(--white); /* Fondo blanco para los enlaces */
+    display: block; /* Para que el padding y background funcionen correctamente */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra para los botones de menú */
 }
 
 nav ul li a:hover,
 nav ul li a.active {
-    background-color: var(--primary-color);
-    color: var(--white);
+    background-color: var(--primary-color); /* Fondo al hacer hover */
+    color: var(--white); /* Texto blanco al hacer hover */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra más pronunciada al hover */
 }
 
 /* Contenido Principal */
@@ -304,26 +355,37 @@ footer {
 /* Responsividad básica */
 @media (max-width: 768px) {
     header {
-        padding: 1rem;
+        padding: 0.5rem 1rem;
+        height: 80px; /* Ajusta la altura del header en móviles */
     }
-    .logo-and-site-title {
-        flex-direction: column;
-        margin-bottom: 0.5rem;
+    .logo-container {
+        top: 5px;
+        left: 10px;
     }
     .logo {
-        width: 45px;
-        height: 45px;
-        margin-right: 0;
-        margin-bottom: 0.5rem;
+        width: 120px;
     }
-    header h1 {
-        font-size: 2rem;
+
+    .hero-banner {
+        height: 65vh; /* Ajusta para dar espacio al nav en móviles */
+        padding-bottom: 60px; /* Más espacio para el nav */
     }
-    .banner-placeholder {
-        height: 150px;
+
+    .hero-content {
+        padding: 10px;
+        margin-bottom: 10px;
     }
-    .banner-placeholder p {
-        font-size: 1rem;
+
+    .hero-content h2 {
+        font-size: 2.2em;
+    }
+
+    .hero-content p {
+        font-size: 1em;
+    }
+
+    nav {
+        padding: 0.5rem 1rem;
     }
 
     nav ul {
@@ -331,7 +393,12 @@ footer {
     }
 
     nav ul li {
-        margin: 0.5rem 0;
+        margin: 0.2rem 0;
+    }
+
+    nav ul li a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9em;
     }
 
     main {
@@ -358,20 +425,130 @@ footer {
 }
 
 @media (max-width: 480px) {
+    header {
+        height: 70px;
+    }
     .logo {
-        width: 40px;
-        height: 40px;
+        width: 100px;
     }
-    header h1 {
-        font-size: 1.6rem;
+    .hero-banner {
+        height: 70vh; /* Ajusta más para móviles pequeños */
     }
-    .banner-placeholder {
-        height: 120px;
+
+    .hero-content h2 {
+        font-size: 1.8em;
     }
-    .banner-placeholder p {
-        font-size: 0.8rem;
+    .hero-content p {
+        font-size: 0.9em;
+    }
+    .btn-hero {
+        padding: 10px 20px;
     }
     section h2 {
         font-size: 1.8rem;
     }
+}
+
+
+/* Estilos para el formulario de cotización */
+.quote-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espacio entre los grupos de formulario */
+    max-width: 600px; /* Ancho máximo del formulario */
+    margin: 40px auto; /* Centra el formulario y le da espacio vertical */
+    padding: 30px;
+    border: 1px solid var(--pale-spring-bud); /* Borde sutil */
+    border-radius: var(--border-radius);
+    background-color: var(--white);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Sombra suave para profundidad */
+}
+
+.quote-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.quote-form label {
+    font-weight: 700; /* Texto más grueso para las etiquetas */
+    margin-bottom: 8px; /* Espacio debajo de la etiqueta */
+    color: var(--dark-slate-gray); /* Color de texto para las etiquetas */
+    font-size: 1.05em;
+}
+
+.quote-form input[type="text"],
+.quote-form input[type="email"],
+.quote-form input[type="date"],
+.quote-form textarea {
+    padding: 12px 15px;
+    border: 1px solid var(--silver-chalice); /* Borde inicial más suave */
+    border-radius: 6px;
+    font-size: 1em;
+    width: 100%; /* Ocupa todo el ancho disponible */
+    box-sizing: border-box; /* Incluye padding y borde en el ancho total */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transición suave para color de borde y sombra */
+}
+
+/* *** NUEVO/MODIFICADO: Efecto al pasar el mouse (hover) y al enfocar el campo (focus) *** */
+.quote-form input[type="text"]:hover,
+.quote-form input[type="email"]:hover,
+.quote-form input[type="date"]:hover,
+.quote-form textarea:hover {
+    border-color: var(--tiffany-blue); /* Cambia el color del borde al pasar el mouse */
+    /* Opcional: puedes añadir una sombra sutil al hover si quieres */
+    /* box-shadow: 0 0 0 2px rgba(10, 186, 181, 0.1); */
+}
+
+.quote-form input[type="text"]:focus,
+.quote-form input[type="email"]:focus,
+.quote-form input[type="date"]:focus,
+.quote-form textarea:focus {
+    border-color: var(--tiffany-blue); /* Color del borde al enfocar */
+    outline: none; /* Quita el contorno por defecto del navegador */
+    box-shadow: 0 0 0 3px rgba(10, 186, 181, 0.2); /* Sombra suave al enfocar */
+}
+/* *** FIN NUEVO/MODIFICADO *** */
+
+.quote-form textarea {
+    resize: vertical; /* Permite al usuario redimensionar verticalmente el textarea */
+    min-height: 100px; /* Altura mínima para el textarea */
+}
+
+.quote-form .btn-submit {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 14px 30px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1.15em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition); /* Aplica la transición definida en las variables */
+    align-self: center; /* Centra el botón si el contenedor es flex */
+    margin-top: 15px; /* Espacio superior para el botón */
+}
+
+.quote-form .btn-submit:hover {
+    background-color: var(--tiffany-blue); /* Cambia a un color de acento al pasar el mouse */
+    transform: translateY(-2px); /* Pequeño efecto de elevación */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2); /* Sombra más pronunciada al pasar el mouse */
+}
+
+/* Estilos para el mensaje de éxito */
+.success-message {
+    background-color: #d4edda; /* Fondo verde claro */
+    color: #155724; /* Texto verde oscuro */
+    border: 1px solid #c3e6cb; /* Borde verde */
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    font-weight: bold;
+    display: none; /* Inicialmente oculto */
+    animation: fadeIn 0.5s ease-out; /* Animación de aparición */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
